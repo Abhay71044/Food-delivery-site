@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>food menu</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+   <style>
+      .quantity {
+         display: flex;
+         align-items: center;
+         gap: 8px;
+      }
+
+      .quantity button {
+         background: #ff4757;
+         border: none;
+         color: white;
+         font-size: 1.2rem;
+         width: 30px;
+         height: 30px;
+         border-radius: 6px;
+         cursor: pointer;
+         transition: 0.2s;
+      }
+
+      .quantity button:hover {
+         background: #e84118;
+      }
+
+      .quantity .qty {
+         font-size: 1rem;
+         font-weight: bold;
+         width: 30px;
+         text-align: center;
+         display: inline-block;
+      }
+
+      .add-cart {
+         margin-top: 8px;
+         display: inline-block;
+         background: #27ae60;
+         color: #fff;
+         border: none;
+         padding: 8px 12px;
+         border-radius: 6px;
+         cursor: pointer;
+      }
+   </style>
+</head>
+<body>
+   
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">yum-yum 😋</a>
+
+      <nav class="navbar">
+         <a href="home.html">home</a>
+         <a href="about.html">about</a>
+         <a href="menu.html">menu</a>
+         <a href="orders.html">orders</a>
+         <a href="contact.html">contact</a>
+      </nav>
+
+      <div class="icons">
+         <a href="search.html"><i class="fas fa-search"></i></a>
+         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span id="cart-count">(0)</span></a>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+
+      <div class="profile">
+         <p class="name">Guest User</p>
+         <div class="flex">
+            <a href="profile.html" class="btn">profile</a>
+            <a href="#" class="delete-btn">logout</a>
+         </div>
+         <p class="account"><a href="index.html">login</a> or <a href="register.html">register</a></p>
+      </div>
+   </section>
+</header>
+
+<div class="heading">
+   <h3>our menu</h3>
+   <p><a href="home.html">home </a> <span> / menu</span></p>
+</div>
+
+<section class="products">
+   <h1 class="title">latest dishes</h1>
+
+   <div class="box-container">
+
+      <!-- Product 1 -->
+      <form class="box">
+         <img src="uploaded_img/pizza-1.png" alt="">
+         <a href="category.html" class="cat">fast food</a>
+         <div class="name">Delicious Pizza</div>
+         <div class="flex">
+            <div class="price" data-price="249">₹249/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 2 -->
+      <form class="box">
+         <img src="uploaded_img/dish-1.png" alt="">
+         <a href="category.html" class="cat">main dishes</a>
+         <div class="name">Main Dish 01</div>
+         <div class="flex">
+            <div class="price" data-price="199">₹199/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 3 -->
+      <form class="box">
+         <img src="uploaded_img/burger-1.png" alt="">
+         <a href="category.html" class="cat">fast food</a>
+         <div class="name">Cheezy Hamburger</div>
+         <div class="flex">
+            <div class="price" data-price="179">₹179/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 4 -->
+      <form class="box">
+         <img src="uploaded_img/dessert-1.png" alt="">
+         <a href="category.html" class="cat">dessert</a>
+         <div class="name">Delicious Dessert</div>
+         <div class="flex">
+            <div class="price" data-price="149">₹149/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 5 -->
+      <form class="box">
+         <img src="uploaded_img/drink-1.png" alt="">
+         <a href="category.html" class="cat">drinks</a>
+         <div class="name">Fresh Drink</div>
+         <div class="flex">
+            <div class="price" data-price="99">₹99/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 6 -->
+      <form class="box">
+         <img src="uploaded_img/dish-2.png" alt="">
+         <a href="category.html" class="cat">main dishes</a>
+         <div class="name">Main Dish 02</div>
+         <div class="flex">
+            <div class="price" data-price="229">₹229/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 7 -->
+      <form class="box">
+         <img src="uploaded_img/creamy-pasta.webp" alt="">
+         <a href="category.html" class="cat">italian</a>
+         <div class="name">Creamy Pasta</div>
+         <div class="flex">
+            <div class="price" data-price="199">₹199/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 8 -->
+      <form class="box">
+         <img src="uploaded_img/grilled.webp" alt="">
+         <a href="category.html" class="cat">fast food</a>
+         <div class="name">Grilled Sandwich</div>
+         <div class="flex">
+            <div class="price" data-price="129">₹129/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 9 -->
+      <form class="box">
+         <img src="uploaded_img/hakka.webp" alt="">
+         <a href="category.html" class="cat">asian</a>
+         <div class="name">Veg Hakka Noodles</div>
+         <div class="flex">
+            <div class="price" data-price="159">₹159/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form>
+
+      <!-- Product 10 -->
+      <!-- <form class="box">
+         <img src="uploaded_img/icecream.png" alt="">
+         <a href="category.html" class="cat">dessert</a>
+         <div class="name">Chocolate Ice Cream</div>
+         <div class="flex">
+            <div class="price" data-price="89">₹89/-</div>
+            <div class="quantity">
+               <button type="button" class="decrease">−</button>
+               <span class="qty">0</span>
+               <button type="button" class="increase">+</button>
+            </div>
+         </div>
+         <button type="button" class="add-cart">Add to Cart</button>
+      </form> -->
+
+   </div>
+</section>
+
+<footer class="footer">
+
+   <section class="box-container">
+
+      <div class="box">
+         <img src="images/email-icon.png" alt="">
+         <h3>our email</h3>
+         <a href="mailto:shaikhanas@gmail.com">akash@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com">abhay@gmail.com</a>
+      </div>
+
+      <div class="box">
+         <img src="images/clock-icon.png" alt="">
+         <h3>opening hours</h3>
+         <p>07:00am to 10:00pm </p>
+      </div>
+
+      <div class="box">
+         <img src="images/map-icon.png" alt="">
+         <h3>our address</h3>
+         <a href="https://www.google.com/maps">Gr'Noida, india - 201310</a>
+      </div>
+
+      <div class="box">
+         <img src="images/phone-icon.png" alt="">
+         <h3>our number</h3>
+         <a href="tel:1234567890">+123-456-7890</a>
+         <a href="tel:1112223333">+111-222-3333</a>
+      </div>
+
+   </section>
+
+   <div class="credit">&copy; copyright @ 2025 by <span>A & A Brothers</span> | all rights reserved!</div>
+
+</footer>
+
+<div class="loader"><img src="images/loader.gif" alt=""></div>
+<script src="js/script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const count = cart.reduce((sum, it) => sum + (it.qty||0), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.textContent = `(${count})`;
+  }
+
+  document.querySelectorAll(".box").forEach(box => {
+    const qtySpan = box.querySelector(".qty");
+    const incBtn = box.querySelector(".increase");
+    const decBtn = box.querySelector(".decrease");
+
+    if (incBtn) incBtn.addEventListener("click", () => {
+      let v = parseInt(qtySpan.textContent) || 0;
+      if (v < 99) qtySpan.textContent = v + 1;
+    });
+    if (decBtn) decBtn.addEventListener("click", () => {
+      let v = parseInt(qtySpan.textContent) || 0;
+      if (v > 0) qtySpan.textContent = v - 1;
+    });
+  });
+
+  document.querySelectorAll(".add-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const box = btn.closest(".box");
+      const name = box.querySelector(".name").textContent.trim();
+      const img = box.querySelector("img") ? box.querySelector("img").getAttribute("src") : "";
+      const price = parseFloat(box.querySelector(".price").getAttribute("data-price")) || 0;
+      const qty = parseInt(box.querySelector(".qty").textContent) || 0;
+
+      if (qty <= 0) {
+        alert("Please select at least 1 quantity before adding to cart 🚫");
+        return;
+      }
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty = (existing.qty || 0) + qty;
+      } else {
+        cart.push({ name, price, qty, img });
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} added to cart (${qty}x) ✅`);
+      box.querySelector(".qty").textContent = 0;
+      updateCartCount();
+    });
+  });
+
+  updateCartCount();
+});
+</script>
+</body>
+</html>

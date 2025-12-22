@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+   <link rel="stylesheet" href="css/style.css">
+
+   <style>
+      .loader {
+         position: fixed;
+         top: 0; left: 0;
+         width: 100%;
+         height: 100%;
+         background: #fff;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         z-index: 9999;
+         transition: opacity 0.5s ease;
+      }
+      .loader.hide {
+         opacity: 0;
+         visibility: hidden;
+      }
+   </style>
+</head>
+<body>
+
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">yum-yum 😋</a>
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+   </section>
+</header>
+
+<section class="form-container">
+   <form id="loginForm">
+      <h3>login now</h3>
+      <input type="email" required maxlength="50" name="email" placeholder="enter your email" class="box">
+      <input type="password" required maxlength="20" name="pass" placeholder="enter your password" class="box">
+      <input type="submit" value="login now" class="btn">
+      <p>don’t have an account? <a href="register.html">register now</a></p>
+   </form>
+</section>
+
+<footer class="footer">
+   <section class="box-container">
+      <div class="box">
+         <h3>our email</h3>
+         <a href="mailto:akash@gmail.com">akash@gmail.com</a>
+         <a href="mailto:abhay@gmail.com">abhay@gmail.com</a>
+      </div>
+      <div class="box">
+         <h3>opening hours</h3>
+         <p>07:00am to 10:00pm</p>
+      </div>
+      <div class="box">
+         <h3>our address</h3>
+         <a href="#">Gr'Noida, India - 201310</a>
+      </div>
+      <div class="box">
+         <h3>our number</h3>
+         <a href="tel:1234567890">+123-456-7890</a>
+         <a href="tel:1112223333">+111-222-3333</a>
+      </div>
+   </section>
+   <div class="credit">&copy; copyright @ 2025 by <span>A & A Brothers</span> | all rights reserved!</div>
+</footer>
+
+<!-- Loader -->
+<div class="loader">
+   <img src="images/loader.gif" alt="Loading...">
+</div>
+
+<script>
+window.addEventListener("load", () => {
+   document.querySelector(".loader").classList.add("hide");
+});
+
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email = e.target.email.value.trim();
+  const pass = e.target.pass.value.trim();
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find((u) => u.email === email && u.pass === pass);
+
+  if (user) {
+    alert("Login successful! Redirecting to home...");
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    window.location.href = "home.html";
+  } else {
+    alert("Invalid email or password!");
+  }
+});
+</script>
+
+</body>
+</html>

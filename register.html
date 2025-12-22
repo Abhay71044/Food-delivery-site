@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>register</title>
+
+   <!-- font awesome cdn link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!-- custom css file link -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+   
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">yum-yum 😋</a>
+      <div class="icons">
+         <div id="user-btn" class="fas fa-user" style="opacity: 0;"></div>
+         <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+   </section>
+</header>
+
+<section class="form-container">
+   <form id="registerForm">
+      <h3>register now</h3>
+      <input type="text" required maxlength="20" name="name" placeholder="enter your name" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="email" required maxlength="50" name="email" placeholder="enter your email" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="number" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" placeholder="enter your number" required class="box" name="number">
+      <input type="password" required maxlength="20" name="pass" placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" required maxlength="20" name="cpass" placeholder="confirm your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="submit" value="register now" class="btn" name="submit">
+      <p>already have an account? <a href="index.html">login now</a></p>
+   </form>
+</section>
+
+<footer class="footer">
+
+   <section class="box-container">
+
+      <div class="box">
+         <img src="images/email-icon.png" alt="">
+         <h3>our email</h3>
+         <a href="mailto:shaikhanas@gmail.com">akash@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com">abhay@gmail.com</a>
+      </div>
+
+      <div class="box">
+         <img src="images/clock-icon.png" alt="">
+         <h3>opening hours</h3>
+         <p>07:00am to 10:00pm </p>
+      </div>
+
+      <div class="box">
+         <img src="images/map-icon.png" alt="">
+         <h3>our address</h3>
+         <a href="https://www.google.com/maps">Gr'Noida, india - 201310</a>
+      </div>
+
+      <div class="box">
+         <img src="images/phone-icon.png" alt="">
+         <h3>our number</h3>
+         <a href="tel:1234567890">+123-456-7890</a>
+         <a href="tel:1112223333">+111-222-3333</a>
+      </div>
+
+   </section>
+
+   <div class="credit">&copy; copyright @ 2025 by <span>A & A Brothers</span> | all rights reserved!</div>
+
+</footer>
+
+<div class="loader">
+   <img src="images/loader.gif" alt="">
+</div>
+
+<script src="js/script.js"></script>
+
+<!-- Register Functionality -->
+<script>
+window.onload = () => {
+   setTimeout(() => {
+      document.querySelector('.loader').style.opacity = '0';
+      document.querySelector('.loader').style.transition = 'opacity 0.5s ease';
+      setTimeout(() => {
+         document.querySelector('.loader').style.display = 'none';
+      }, 500);
+   }, 800);
+};
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+   e.preventDefault();
+
+   const name = this.name.value.trim();
+   const email = this.email.value.trim();
+   const number = this.number.value.trim();
+   const pass = this.pass.value.trim();
+   const cpass = this.cpass.value.trim();
+
+   if (pass !== cpass) {
+      alert("Passwords do not match!");
+      return;
+   }
+
+   const users = JSON.parse(localStorage.getItem("users")) || [];
+   const existingUser = users.find(u => u.email === email);
+
+   if (existingUser) {
+      alert("User already registered!");
+      return;
+   }
+
+   users.push({ name, email, number, pass });
+   localStorage.setItem("users", JSON.stringify(users));
+
+   alert("Registration successful!");
+   window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>

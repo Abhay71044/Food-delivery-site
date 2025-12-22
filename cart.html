@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>My Cart</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+   <style>
+      .empty {
+         text-align: center;
+         font-size: 1.5rem;
+         color: #555;
+         margin: 30px 0;
+      }
+
+      .cart-item {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         border: 1px solid #ddd;
+         padding: 10px;
+         border-radius: 10px;
+         margin: 10px 0;
+         background: #fff;
+      }
+
+      .cart-item img {
+         width: 80px;
+         height: 80px;
+         object-fit: cover;
+         border-radius: 10px;
+      }
+
+      .cart-details {
+         flex: 1;
+         margin-left: 15px;
+      }
+
+      .cart-details h3 {
+         font-size: 1.2rem;
+         margin: 0;
+         color: #333;
+      }
+
+      .cart-details p {
+         margin: 5px 0;
+         color: #555;
+      }
+
+      .cart-price {
+         font-size: 1.1rem;
+         font-weight: bold;
+         color: #2c3e50;
+      }
+
+      .cart-qty {
+         font-weight: bold;
+      }
+
+      .remove-btn {
+         background: #ff4757;
+         color: white;
+         border: none;
+         padding: 8px 10px;
+         border-radius: 6px;
+         cursor: pointer;
+         transition: 0.2s;
+      }
+
+      .remove-btn:hover {
+         background: #e84118;
+      }
+
+      #grand-total {
+         font-size: 1.3rem;
+         font-weight: bold;
+         color: #27ae60;
+      }
+   </style>
+</head>
+<body>
+   
+<header class="header">
+   <section class="flex">
+      <a href="home.html" class="logo">yum-yum 😋</a>
+
+      <nav class="navbar">
+         <a href="home.html">home</a>
+         <a href="about.html">about</a>
+         <a href="menu.html">menu</a>
+         <a href="orders.html">orders</a>
+         <a href="contact.html">contact</a>
+      </nav>
+
+      <div class="icons">
+         <a href="search.html"><i class="fas fa-search"></i></a>
+         <a href="cart.html"><i class="fas fa-shopping-cart"></i><span id="cart-count">(0)</span></a>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+
+      <div class="profile">
+         <p class="name">Guest User</p>
+         <div class="flex">
+            <a href="profile.html" class="btn">profile</a>
+            <a href="#" class="delete-btn">logout</a>
+         </div>
+         <p class="account"><a href="index.html">login</a> or <a href="register.html">register</a></p>
+      </div>
+
+   </section>
+</header>
+
+<div class="heading">
+   <h3>shopping cart</h3>
+   <p><a href="home.html">home </a> <span> / cart</span></p>
+</div>
+
+<section class="products">
+   <h1 class="title">your cart</h1>
+
+   <div class="cart-total">
+      <p>grand total : <span id="grand-total">₹0/-</span></p>
+      <a href="checkout.html" class="btn">checkout orders</a>
+   </div>
+
+   <div class="box-container" id="cart-items">
+      <p class="empty">Your cart is empty 😔</p>
+   </div>
+
+   <div class="more-btn">
+      <a href="#" class="delete-btn" id="delete-all">delete all</a>
+   </div>
+</section>
+
+<footer class="footer">
+
+   <section class="box-container">
+
+      <div class="box">
+         <img src="images/email-icon.png" alt="">
+         <h3>our email</h3>
+         <a href="mailto:shaikhanas@gmail.com">akash@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com">abhay@gmail.com</a>
+      </div>
+
+      <div class="box">
+         <img src="images/clock-icon.png" alt="">
+         <h3>opening hours</h3>
+         <p>07:00am to 10:00pm </p>
+      </div>
+
+      <div class="box">
+         <img src="images/map-icon.png" alt="">
+         <h3>our address</h3>
+         <a href="https://www.google.com/maps">Gr'Noida, india - 201310</a>
+      </div>
+
+      <div class="box">
+         <img src="images/phone-icon.png" alt="">
+         <h3>our number</h3>
+         <a href="tel:1234567890">+123-456-7890</a>
+         <a href="tel:1112223333">+111-222-3333</a>
+      </div>
+
+   </section>
+
+   <div class="credit">&copy; copyright @ 2025 by <span>A & A Brothers</span> | all rights reserved!</div>
+
+</footer>
+
+<div class="loader">
+   <img src="images/loader.gif" alt="">
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById("cart-items");
+  const grandEl = document.getElementById("grand-total");
+  const cartCountEls = document.querySelectorAll('#cart-count');
+
+  // load cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  function updateNavCounts() {
+    const count = cart.reduce((s,i) => s + (i.qty||0), 0);
+    cartCountEls.forEach(el => el.textContent = `(${count})`);
+  }
+
+  function renderCart() {
+    container.innerHTML = "";
+    if (!cart || cart.length === 0) {
+      container.innerHTML = "<p class='empty'>Your cart is empty 😔</p>";
+      grandEl.textContent = "₹0/-";
+      updateNavCounts();
+      return;
+    }
+
+    let grandTotal = 0;
+    cart.forEach((item, idx) => {
+      const subtotal = (item.price||0) * (item.qty||0);
+      grandTotal += subtotal;
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+         <img src="${item.img}" alt="">
+         <div class="cart-details">
+            <h3>${item.name}</h3>
+            <p class="cart-price">Price: ₹${item.price}</p>
+            <p class="cart-qty">Qty: ${item.qty}</p>
+            <p class="cart-price">Total: ₹${subtotal}</p>
+         </div>
+         <button class="remove-btn" data-index="${idx}">Remove</button>
+      `;
+      container.appendChild(div);
+    });
+
+    grandEl.textContent = "₹" + grandTotal + "/-";
+    updateNavCounts();
+
+    // attach remove handlers
+    document.querySelectorAll(".remove-btn").forEach(btn => {
+      btn.addEventListener("click", function() {
+        const i = parseInt(this.getAttribute("data-index"));
+        cart.splice(i, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      });
+    });
+  }
+
+  // initial render
+  renderCart();
+
+  // delete all
+  document.getElementById("delete-all").addEventListener("click", function(e) {
+    e.preventDefault();
+    if (confirm("Delete all from cart?")) {
+      cart = [];
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+  });
+});
+</script>
+
+</body>
+</html>

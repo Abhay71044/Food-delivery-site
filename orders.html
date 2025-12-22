@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Orders - Yum Yum</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f8f8f8;
+    }
+
+    /* Full-screen Loader Styling */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: #fff;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .order {
+      max-width: 750px;
+      margin: 50px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 40px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      border-top: 5px solid #27ae60;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #27ae60;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .order-box {
+      background: #fafafa;
+      border-radius: 15px;
+      border: 1px solid #eee;
+      padding: 20px;
+      margin-bottom: 25px;
+      transition: 0.3s ease;
+    }
+
+    .order-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .order-box h3 {
+      color: #27ae60;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .order-box p {
+      margin: 5px 0;
+      font-size: 1.05rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .no-orders {
+      text-align: center;
+      color: #999;
+      font-size: 1.2rem;
+      margin-top: 40px;
+    }
+
+    .clear-btn {
+      display: block;
+      width: 100%;
+      background: #e74c3c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+
+    .clear-btn:hover {
+      background: #c0392b;
+    }
+
+    @media (max-width: 768px) {
+      .order {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔥 Full-screen loader added -->
+  <div class="loader">
+    <img src="images/loader.gif" alt="Loading..." />
+  </div>
+
+  <header class="header">
+    <section class="flex">
+      <a href="home.html" class="logo">yum-yum 😋</a>
+
+      <nav class="navbar">
+        <a href="home.html">home</a>
+        <a href="about.html">about</a>
+        <a href="menu.html">menu</a>
+        <a href="orders.html">orders</a>
+        <a href="contact.html">contact</a>
+      </nav>
+
+      <div class="icons">
+        <a href="search.html"><i class="fas fa-search"></i></a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i><span id="cart-count">(0)</span></a>
+        <div id="user-btn" class="fas fa-user"></div>
+        <div id="menu-btn" class="fas fa-bars"></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="heading">
+    <h3>Your Orders</h3>
+    <p><a href="home.html">home </a> <span> / orders</span></p>
+  </div>
+
+  <section class="order">
+    <h1 class="title">Order History</h1>
+    <div id="orders-container"></div>
+    <button class="clear-btn" id="clear-history-btn">🗑 Clear Order History</button>
+  </section>
+
+  <footer class="footer">
+
+   <section class="box-container">
+
+      <div class="box">
+         <img src="images/email-icon.png" alt="">
+         <h3>our email</h3>
+         <a href="mailto:shaikhanas@gmail.com">akash@gmail.com</a>
+         <a href="mailto:anasbhai@gmail.com">abhay@gmail.com</a>
+      </div>
+
+      <div class="box">
+         <img src="images/clock-icon.png" alt="">
+         <h3>opening hours</h3>
+         <p>07:00am to 10:00pm </p>
+      </div>
+
+      <div class="box">
+         <img src="images/map-icon.png" alt="">
+         <h3>our address</h3>
+         <a href="https://www.google.com/maps">Gr'Noida, india - 201310</a>
+      </div>
+
+      <div class="box">
+         <img src="images/phone-icon.png" alt="">
+         <h3>our number</h3>
+         <a href="tel:1234567890">+123-456-7890</a>
+         <a href="tel:1112223333">+111-222-3333</a>
+      </div>
+
+   </section>
+
+   <div class="credit">&copy; copyright @ 2025 by <span>A & A Brothers</span> | all rights reserved!</div>
+
+</footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cartCountEls = document.querySelectorAll("#cart-count");
+      const ordersContainer = document.getElementById("orders-container");
+      const clearBtn = document.getElementById("clear-history-btn");
+
+      const allOrders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+      cartCountEls.forEach((el) => (el.textContent = `(0)`));
+
+      function renderOrders() {
+        ordersContainer.innerHTML = "";
+        if (allOrders.length > 0) {
+          allOrders.slice().reverse().forEach((order, index) => {
+            let total = 0;
+            let orderHTML = `
+              <div class="order-box">
+                <h3>🧾 Order #${index + 1}</h3>
+                <p><strong>Name:</strong> ${order.user.name}</p>
+                <p><strong>Payment:</strong> ${order.user.payment}</p>
+                <hr style="border:none;border-top:1px solid #eee;margin:10px 0;" />
+            `;
+            order.cart.forEach((item) => {
+              const sub = item.price * item.qty;
+              total += sub;
+              orderHTML += `<p><span>${item.name} (x${item.qty})</span><span>₹${sub}</span></p>`;
+            });
+            orderHTML += `
+                <p style="font-weight:bold;color:#27ae60;"><span>Total:</span><span>₹${total}</span></p>
+                <p style="font-size:0.9rem;color:#777;">📅 ${order.date}</p>
+              </div>
+            `;
+            ordersContainer.innerHTML += orderHTML;
+          });
+        } else {
+          ordersContainer.innerHTML = `<p class="no-orders">No orders yet 😔</p>`;
+        }
+      }
+
+      renderOrders();
+
+      clearBtn.addEventListener("click", function () {
+        if (confirm("Are you sure you want to clear all orders?")) {
+          localStorage.removeItem("orderHistory");
+          ordersContainer.innerHTML = `<p class="no-orders">No orders yet 😔</p>`;
+        }
+      });
+    });
+
+    // 🔥 Full-screen loader hide effect (2 sec)
+    window.addEventListener("load", () => {
+      const loader = document.querySelector(".loader");
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.style.display = "none", 2500);
+    });
+  </script>
+</body>
+</html>
