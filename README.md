@@ -162,13 +162,3 @@ Admin dashboard
 Database support
 
 Real-time order tracking
-
-If you want, I can also:
-
-Make this README more professional for internships
-
-Add badges
-
-Create a GitHub description
-
-Write a LinkedIn project post
