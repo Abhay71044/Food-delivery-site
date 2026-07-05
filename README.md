@@ -1,4 +1,4 @@
-🍔 Yum-Yum 😋 – Food Delivery Website
+🍔 Yum-Yum 😋 – Food Delivery Website 
 
 Yum-Yum 😋 is a front-end food delivery web application built using HTML, CSS, and JavaScript.
 The project simulates a real-world food ordering platform with user authentication, menu browsing, cart management, order history, and profile handling — all managed using LocalStorage.
