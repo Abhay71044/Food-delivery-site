@@ -7,7 +7,7 @@ The project simulates a real-world food ordering platform with user authenticati
 
 🔐 User Authentication
  
-Register & Login system using LocalStorage
+Register & Login system using LocalStorage 
 
 Session handling with currentUser
 
